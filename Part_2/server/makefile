@@ -1,0 +1,34 @@
+all : main
+
+main : Main.o lib.a
+	gcc -o main Main.o ./lib.a
+
+Main.o : Main.c
+	gcc -c -g Main.c
+
+lib.a : ls.o cat.o handler.o help.o exit.o server_functions.o read_and_write.o
+	ar rcs lib.a ls.o cat.o handler.o help.o exit.o server_functions.o read_and_write.o
+
+ls.o : ls.c
+	gcc -c -g ls.c
+
+handler.o : handler.c
+	gcc -c -g handler.c
+
+help.o : help.c
+	gcc -c -g help.c
+
+exit.o : exit.c
+	gcc -c -g exit.c
+
+cat.o : cat.c
+	gcc -c -g cat.c
+
+server_functions.o: server_functions.c
+	gcc -c -g server_functions.c
+
+read_and_write.o: read_and_write.c
+	gcc -c -g read_and_write.c
+
+clean:
+	rm *o
